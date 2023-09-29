@@ -1,0 +1,38 @@
+typedef struct node 
+{
+	int data;
+	struct node *next;
+	}node;
+	node *create(node *list)
+	{
+	node *newnode,*temp;
+	int i,n;
+	printf("enter limit:");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+	newnode=(node *)malloc(sizeof(node));
+	printf("enter value:");
+	scanf("%d",&newnode->data);
+	newnode->next=NULL;
+	if(list==NULL)
+	{
+	list=newnode;
+	temp=newnode;
+	}
+	else
+	{
+	temp->next=newnode;
+	temp=newnode;
+	}
+}
+	return list;
+	}
+	void disp(node *list)
+	{
+	node *temp;
+	for(temp=list;temp!=NULL;temp=temp->next)
+	{
+		printf("%d\t",temp->data);
+	}
+}
