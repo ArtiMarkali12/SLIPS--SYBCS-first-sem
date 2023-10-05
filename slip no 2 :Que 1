@@ -39,6 +39,33 @@ typedef struct node
 
 
 
+#include<stdio.h>
+#include<stdlib.h>
+#include"singlylist.h"
+int main()
+{
+        node *list=NULL;
+        int ch;
+        do
+        {
+        printf("\n 1-create \n 2-disp:");
+        printf("\n enter choice :");
+        scanf("%d",&ch);
+        switch(ch)
+{
+        case 1:list=create(list);
+                break;
+        case 2:disp(list);
+                break;
+        default:printf("linvalid choice :");
+        }
+}while(ch<3);
+}
+
+
+
+
+
 
 
 
