@@ -1,0 +1,51 @@
+#include<stdio.h>
+int Q[20];
+int f,R;
+void init()
+{
+f=R=-1;
+}
+int isempty()
+{
+if(f==R)
+return 1;
+else
+return 0;
+}
+int isfull()
+{
+	if(R==19)
+	return 1;
+else 
+	return 0;
+	}
+	void Add(int no)
+{
+if(isfull()==1)
+printf("Queue is Full ");
+else
+{
+R++;
+Q[R]=no;
+}
+}
+int Delete()
+{
+int no;
+if(isempty()==1)
+printf("Queue is empty ");
+else
+{
+f++;
+no=Q[f];
+}
+return no;
+}
+void display()
+{
+int i;
+for(i=f+1;i<=R;i++)
+{
+printf("%d ",Q[i]);
+}
+}
