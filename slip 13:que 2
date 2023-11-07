@@ -1,0 +1,73 @@
+/*  Write a program that sorts the elements of linked list using bubble sort
+technique */
+
+
+
+
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct node
+{
+	int data;
+	struct node *next;
+	}node;
+	node *create(node *list)
+	{
+	int i,n;
+	node *temp,*newnode;
+	printf("enter limit:");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+	newnode=(node *)malloc(sizeof(node));
+	printf("enter value:");
+	scanf("%d",&newnode->data);
+	newnode->next=NULL;
+	if(list==NULL)
+	{
+	list=newnode;
+	temp=newnode;
+	}
+	else
+	{
+	temp->next=newnode;
+	temp=newnode;
+	}
+}
+	return list;
+	}
+	void disp(node *list)
+	{
+	node *temp;
+	for(temp=list;temp!=NULL;temp=temp->next)
+	{
+	printf("%d\t",temp->data);
+	}
+}
+	node *bubble(node *list)
+	{
+	node *i,*j,*t;
+	for(i=list;i!=NULL;i=i->next)
+	{
+	for(j=list;j!=i;j=j->next)
+	{
+	if(i->data<j->data)
+	{
+	t=i->data;
+	i->data=j->data;
+	j->data=t;
+	}
+}
+}
+	return list;
+	}
+	int main()
+	{
+	node *list=NULL;
+	list=create(list);
+	disp(list);
+	printf("\n");
+	list=bubble(list);
+	disp(list);
+	}
