@@ -1,0 +1,110 @@
+#include<malloc.h>
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct node
+{
+	int coef,pow;
+	struct node *next;
+	}node;
+	node *create(node *list)
+	{
+	node *temp,*newnode;
+	int co,po,i,n;
+	printf("enter number of terms:");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+	newnode=(node*)malloc(sizeof(node));
+	newnode->next=NULL;
+	printf("enter coef &pow:");
+	scanf("%d%d",&co,&po);
+	newnode->coef=co;
+	newnode->pow=po;
+	if(list==NULL)
+	{
+	list=temp=newnode;
+	}
+	else
+	{
+	temp->next=newnode;
+	temp=newnode;
+	}
+	}
+	return list;
+	}
+	void disp(node *list)
+	{
+	node *temp;
+	for(temp=list;temp!=NULL;temp=temp->next)
+	{
+	printf("%d^%d+",temp->coef,temp->pow);
+	}
+}
+	void mul(node *p1,node *p2,node *p3)
+	{
+	node *t1=p1,*t2=p2,*t3=p3,*newnode;
+	while(t1!=NULL &&t2!=NULL)
+	{
+	newnode=(node*)malloc(sizeof(node));
+	newnode->next=NULL;
+	if(t1->pow>t2->pow)
+	{
+	newnode->coef=t1->coef;
+	newnode->pow=t1->pow;
+	t1=t1->next;
+	}
+	else if(t2->pow>t1->pow)
+	{
+	newnode->coef=t2->coef;
+	newnode->pow=t2->pow;
+	t2=t2->next;
+	}
+	else if(t1->pow==t2->pow)
+	{
+	newnode->coef=t1->coef*t2->coef;
+	newnode->pow=t1->pow;
+	t1=t1->next;
+	t2=t2->next;
+	}
+	if(p3==NULL)
+	t3=p3=newnode;
+	t3->next=newnode;
+	t3=newnode;
+	}
+	while(t1!=NULL)
+	{
+	newnode=(node*)malloc(sizeof(node));
+	newnode->next=NULL;
+	newnode->coef=t1->coef;
+	newnode->pow=t1->pow;
+	t1=t1->next;
+	t3->next=newnode;
+	t3=newnode;
+	}
+	while(t2!=NULL)
+	{
+	newnode=(node*)malloc(sizeof(node));
+	newnode->next=NULL;
+	newnode->coef=t2->coef;
+	newnode->pow=t2->pow;
+	t2=t2->next;
+	t3->next=newnode;
+	t3=newnode;
+	}
+	printf("\n merge list:");
+	disp(p3);
+	}
+	void main()
+	{
+	node *p1=NULL,*p2=NULL,*p3=NULL;
+	p1=create(p1);
+	p2=create(p2);
+	//p3=create(p3);
+	printf("\n polynomial 1:");
+	disp(p1);
+	printf("\n polynomial 2:");
+	disp(p2);
+	mul(p1,p2,p3);
+	}
+	
+	
